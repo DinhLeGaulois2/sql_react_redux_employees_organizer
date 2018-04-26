@@ -19,13 +19,22 @@ module.exports = function (app) {
                         .then(data => {
                             if (data == null) {
                                 db.department.destroy({ where: { id: req.params.id } })
-                                    .then(data => res.status(200).json("Delation Successful!"))
+                                    .then(data => res.status(200).json({
+                                        isError: false,
+                                        msg: "Delation Successfully!"
+                                    }))
                                     .catch(next)
                             }
-                            else res.status(400).json("Department is not Empty")
+                            else res.status(200).json({
+                                isError: true,
+                                msg: "Department Still Has Employee(s): Could not Be Deleted"
+                            })
                         })
                 }
-                else res.status(400).json("Department-employees is not Empty")
+                else res.status(200).json({
+                    isError: true,
+                    msg: "Department Still Has Manager(s): Could not Be Deleted"
+                })
             })
             .catch(next)
     })
@@ -35,13 +44,17 @@ module.exports = function (app) {
             return db.dept_emp.destroy({ // delete "department-employee" relationship
                 where: { employeeId: req.params.id }
             }, { transaction: t }).then(data => {
-                return db.title.destroy({ // delete the "title" of the employee
+                return db.dept_manager.destroy({ // delete "department-employee" relationship
                     where: { employeeId: req.params.id }
                 }, { transaction: t }).then(data => {
-                    return db.salary.destroy({ // delete the "salary" of the employee
+                    return db.title.destroy({ // delete the "title" of the employee
                         where: { employeeId: req.params.id }
                     }, { transaction: t }).then(data => {
-                        return db.employee.destroy({ where: { courseId: req.params.id } })
+                        return db.salary.destroy({ // delete the "salary" of the employee
+                            where: { employeeId: req.params.id }
+                        }, { transaction: t }).then(data => {
+                            return db.employee.destroy({ where: { id: req.params.id } })
+                        })
                     })
                 })
             })

@@ -12,7 +12,7 @@ const employees_organizer_actions = {
                         type: cst.ADD_DPT_SUCCESS,
                     })
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
@@ -24,7 +24,7 @@ const employees_organizer_actions = {
                         type: cst.ADD_EMP_SUCCESS,
                     })
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
@@ -36,7 +36,7 @@ const employees_organizer_actions = {
                         type: cst.ADD_EMP_DPT_SUCCESS,
                     })
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
@@ -48,7 +48,7 @@ const employees_organizer_actions = {
                         type: cst.ADD_MANAGER_SUCCESS,
                     })
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
@@ -61,7 +61,7 @@ const employees_organizer_actions = {
                         payload: response.data
                     })
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
@@ -74,7 +74,7 @@ const employees_organizer_actions = {
                         payload: response.data
                     })
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
@@ -82,23 +82,40 @@ const employees_organizer_actions = {
         return dispatch => {
             axios.delete("/api/delete/employee/" + eId)
                 .then(response => {
-                    dispatch({
-                        type: cst.DELETE_EMP_SUCCESS,
-                    })
+                    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+                    console.log("/api/delete/employee/: " + JSON.stringify(response, null, 5))
+                    axios.get("/api/get/employees")
+                        .then(response => {
+                            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+                            console.log("/api/delete/employee/, getbacks : " + JSON.stringify(response, null, 5))
+                            dispatch({
+                                type: cst.DISPLAY_EMP_SUCCESS,
+                                payload: response.data
+                            })
+                        })
+                        .catch(err => { alert(err) })
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
     deleteDpt: (dId) => {
         return dispatch => {
-            axios.get("/api/get/department/" + dId)
+            axios.delete("/api/delete/department/" + dId)
                 .then(response => {
-                    dispatch({
-                        type: cst.DELETE_DPT_SUCCESS,
-                    })
+                    if (response.data.isError) alert(response.data.msg)
+                    else {
+                        axios.get("/api/get/departments") // reload departments
+                            .then(response => {
+                                dispatch({
+                                    type: cst.DISPLAY_DPT_SUCCESS,
+                                    payload: response.data
+                                })
+                            })
+                            .catch(err => { alert(err) })
+                    }
                 })
-                .catch(err => { console.log(err) })
+                .catch(err => { alert(err) })
         }
     },
 
@@ -111,7 +128,7 @@ const employees_organizer_actions = {
     //                     payload: response.data
     //                 })
     //             })
-    //             .catch(err => { console.log(err) })
+    //             .catch(err => { alert(err) })
     //     }
     // },
 
@@ -123,7 +140,7 @@ const employees_organizer_actions = {
     //                     type: cst.LINK_MANAGER_2_DPT_SUCCESS,
     //                 })
     //             })
-    //             .catch(err => { console.log(err) })
+    //             .catch(err => { alert(err) })
     //     }
     // },
 
@@ -139,19 +156,17 @@ const employees_organizer_actions = {
                                 payload: response.data
                             })
                         })
-                        .catch(err => { console.log(err) })
+                        .catch(err => { alert(err) })
                 }
                 else if (actionStatus == cst.DISPLAY_EMP) {
                     axios.get("/api/get/employees")
                         .then(response => {
-                            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-                            console.log("/api/get/employees, data: " + JSON.stringify(response, null, 5))
                             dispatch({
                                 type: cst.DISPLAY_EMP_SUCCESS,
                                 payload: response.data
                             })
                         })
-                        .catch(err => { console.log(err) })
+                        .catch(err => { alert(err) })
                 }
             }
         }

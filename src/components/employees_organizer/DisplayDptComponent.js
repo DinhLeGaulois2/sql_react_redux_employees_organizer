@@ -18,8 +18,8 @@ const DisplayDptComponent = ({ dpts, onClickDelete }) => (
                             e.preventDefault()
                             onClickDelete(dpt.id)
                         }}>x</button>
-                        <p><b>Number of Managers</b>: {dpt.dept_managers[0].emp_no}</p>
-                        <p><b>Number of Employees</b>: {dpt.dept_emps[0].emp_no}</p>
+                        <p><b>Number of Managers</b>: {dpt.dept_managers[0].employeeId}</p>
+                        <p><b>Number of Employees</b>: {dpt.dept_emps[0].employeeId}</p>
                     </div>
                 </td></tr>
             )}
@@ -33,11 +33,11 @@ DisplayDptComponent.propTypes = {
         name: PropTypes.string,
         depart_managers: PropTypes.arrayOf(PropTypes.shape({
             id: PropTypes.number,
-            emp_no: PropTypes.number
+            employeeId: PropTypes.number
         })),
         dept_emps: PropTypes.arrayOf(PropTypes.shape({
             id: PropTypes.number,
-            emp_no: PropTypes.number
+            employeeId: PropTypes.number
         }))
     })),
     onClickDelete: PropTypes.func.isRequired

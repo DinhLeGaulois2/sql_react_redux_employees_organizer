@@ -111,8 +111,6 @@ const employees_organizer_reducer = (state = initialStates, action) => {
             })
         }
         case cst.DISPLAY_EMP_SUCCESS: {
-            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-            console.log("DISPLAY_EMP_SUCCESS, data: " + JSON.stringify(action.payload, null, 5))
             return Object.assign({}, state, {
                 status: action.type,
                 data: action.payload

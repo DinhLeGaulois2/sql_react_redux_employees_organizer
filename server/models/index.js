@@ -34,23 +34,23 @@ db.salary = require('../models/salary.js')(sequelize, Sequelize)
 db.title = require('../models/title.js')(sequelize, Sequelize)
 
 // n-m 
-db.employee.hasMany(db.dept_manager, {foreignKey: 'emp_no'})
-db.dept_manager.belongsTo(db.employee, {foreignKey: 'emp_no'})
+db.employee.hasMany(db.dept_manager)
+db.dept_manager.belongsTo(db.employee)
 
-db.dept_manager.belongsTo(db.department, {foreignKey: 'dept_no'})
-db.department.hasMany(db.dept_manager, {foreignKey: 'dept_no'})
+db.dept_manager.belongsTo(db.department)
+db.department.hasMany(db.dept_manager)
 
-db.employee.hasMany(db.dept_emp, {foreignKey: 'emp_no'})
-db.dept_emp.belongsTo(db.employee, {foreignKey: 'emp_no'})
+db.employee.hasMany(db.dept_emp)
+db.dept_emp.belongsTo(db.employee)
 
-db.dept_emp.belongsTo(db.department, {foreignKey: 'dept_no'})
-db.department.hasMany(db.dept_emp, {foreignKey: 'dept_no'})
+db.dept_emp.belongsTo(db.department)
+db.department.hasMany(db.dept_emp)
 
 // 1-n
-db.employee.hasMany(db.salary, {foreignKey: 'emp_no'})
-db.salary.belongsTo(db.employee, {foreignKey: 'emp_no'})
+db.employee.hasMany(db.salary)
+db.salary.belongsTo(db.employee)
 
-db.employee.hasMany(db.title, {foreignKey: 'emp_no'})
-db.title.belongsTo(db.employee, {foreignKey: 'emp_no'})
+db.employee.hasMany(db.title)
+db.title.belongsTo(db.employee)
 
 module.exports = db;

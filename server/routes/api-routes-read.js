@@ -15,11 +15,11 @@ module.exports = function (app) {
             include: [
                 {
                     model: db.dept_manager,
-                    attributes: ['id', 'emp_no']
+                    attributes: ['id', 'employeeId']
                 },
                 {
                     model: db.dept_emp,
-                    attributes: ['id', 'emp_no']
+                    attributes: ['id', 'employeeId']
                 }
             ]
         })
@@ -33,11 +33,11 @@ module.exports = function (app) {
             include: [
                 {
                     model: db.dept_manager,
-                    attributes: ['id', 'emp_no']
+                    attributes: ['id', 'employeeId']
                 },
                 {
                     model: db.dept_emp,
-                    attributes: ['id', 'emp_no']
+                    attributes: ['id', 'employeeId']
                 }
             ]
         })
@@ -60,11 +60,11 @@ module.exports = function (app) {
                 },
                 {
                     model: db.dept_manager,
-                    attributes: ['dept_no']
+                    attributes: ['departmentId']
                 },
                 {
                     model: db.dept_emp,
-                    attributes: ['dept_no']
+                    attributes: ['departmentId']
                 },
             ]
         })
@@ -79,7 +79,7 @@ module.exports = function (app) {
                     title: data[0].titles[0].title,
                     isManager: data[0].dept_managers.length == 0 ? false : true,
                 }
-                let dId = data[0].dept_managers.length == 0 ? data[0].dept_emps[0].dept_no : data[0].dept_managers[0].dept_no
+                let dId = data[0].dept_managers.length == 0 ? data[0].dept_emps[0].departmentId : data[0].dept_managers[0].departmentId
                 db.department.findAll({ where: { id: dId }, attributes: ['name'] })
                     .then(data => {
                         result.dpt_name = data[0].name
@@ -104,11 +104,11 @@ module.exports = function (app) {
                 },
                 {
                     model: db.dept_manager,
-                    attributes: ['dept_no']
+                    attributes: ['departmentId']
                 },
                 {
                     model: db.dept_emp,
-                    attributes: ['dept_no']
+                    attributes: ['departmentId']
                 },
             ]
         })
@@ -127,7 +127,7 @@ module.exports = function (app) {
                         title: aObj.titles[0].title,
                         isManager: aObj.dept_managers.length == 0 ? false : true,
                     }
-                    let dId = aObj.dept_managers.length == 0 ? aObj.dept_emps[0].dept_no : aObj.dept_managers[0].dept_no
+                    let dId = aObj.dept_managers.length == 0 ? aObj.dept_emps[0].departmentId : aObj.dept_managers[0].departmentId
                     db.department.findAll({ where: { id: dId }, attributes: ['name'] })
                         .then(data => {
                             objC.dpt_name = data[0].name
@@ -136,7 +136,9 @@ module.exports = function (app) {
                         })
                         .catch(next)
                 }
-                else res.status(200).json(result)
+                else{
+                    res.status(200).json(result)
+                } 
             }
             oneByOne([...data]);
         })
