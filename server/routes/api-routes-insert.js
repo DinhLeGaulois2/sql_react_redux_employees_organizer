@@ -65,14 +65,14 @@ module.exports = function (app) {
                     from_date: obj.title_from_date,
                     to_date: obj.title_to_date
                 }
-            }, { transaction: t }).then(data => {
+            }, {}, { transaction: t }).then(data => {
                 return db.salary.findOrCreate({
                     where: {
                         salary: obj.salary,
                         from_date: obj.salary_from_date,
                         to_date: obj.salary_to_date
                     }
-                }, { transaction: t })
+                }, {}, { transaction: t })
                     .then(data => {
                         return db.employee.findOrCreate({
                             where: {
