@@ -5,8 +5,8 @@ import DisplayUIComponent from '../../components/employees_organizer/DisplayUICo
 import actions from '../../actions/employees_organizer/employees_organizer_actions'
 
 const mapStateToProps = (state) => ({
-    status: state.courses.status,
-    menuStatus: state.courses.menuStatus
+    status: state.empl.status,
+    menuStatus: state.empl.menuStatus
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -7,12 +7,7 @@ import Modal from '../../common/modal/modal'
 
 import cst from '../../constants/employees_organizer/cst'
 
-const DisplayEmpComponentItem = ({  }) =>
-    <td style={{ 'backgroundColor': 'black', 'color': 'cyan', 'padding': '10px', 'margin': '5px', 'borderStyle': 'solid', 'borderColor': 'gray' }}>
-
-    </td>
-
-const DisplayEmpComponentList = ({  }) => (
+const DisplayEmpComponent = ({  }) => (
     <div>
         <table align="center" style={{ 'width': '80%' }}><tbody>
             {HHHHHHHHHHHHH.map((HHHH, index) =>
@@ -28,10 +23,7 @@ const DisplayEmpComponentList = ({  }) => (
     </div>
 )
 
-DisplayEmpComponentItem.propTypes = {
-}
-
-DisplayEmpComponentList.propTypes = {
+DisplayEmpComponent.propTypes = {
     onClickDelete: PropTypes.func.isRequired
 }
 

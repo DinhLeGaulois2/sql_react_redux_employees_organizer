@@ -2,8 +2,8 @@ import cst from '../../constants/employees_organizer/cst'
 
 const initialStates = {
     data: [],
-    status: "",
-    menuStatus: ""
+    status: cst.DISPLAY_EMP,
+    menuStatus: cst.MENU_DISPLAY
 }
 
 const employees_organizer_reducer = (state = initialStates, action) => {

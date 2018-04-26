@@ -5,7 +5,7 @@ import MainMenuComponent from '../../components/employees_organizer/MainMenuComp
 import actions from '../../actions/employees_organizer/employees_organizer_actions'
 
 const mapStateToProps = (state) => ({
-    menuStatus: state.courses.menuStatus
+    menuStatus: state.empl.menuStatus
 })
 
 const mapDispatchToProps = (dispatch) => ({
