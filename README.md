@@ -1,7 +1,7 @@
 # Employees Organizer
 
 ## Aim
->  Managing employees of a company's
+>  Managing a company's employees.
 
 ---
 
