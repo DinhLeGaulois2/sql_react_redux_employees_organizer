@@ -7,13 +7,13 @@ import { renderInputField, renderTextareaField } from '../../common/reduxForm/re
 const validate = values => {
     const errors = {}
 
-    if (!values.PPPPPP) {
-        errors.PPPPPP = "Required"
+    if (!values.dptName) {
+        errors.dptName = "Required"
     }
     return errors
 }
 
-let AddDptComponent = ({  }) => (
+let AddDptComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddDpt }) => (
         <div>
             <div className="container" style={{ 'backgroundColor': 'white' }}>
                 <div align="center" className="mainTitle" style={{
@@ -26,11 +26,12 @@ let AddDptComponent = ({  }) => (
                     'fontWeight': 'bold',
                     'textAlign': 'center',
                     'margin': '20px 0px'
-                }}>MMMMMMMMMMM</div>
+                }}>Add Department</div>
             </div>
             <br />
-            <form onSubmit={handleSubmit(onClickRRRRRRRR)}>
+            <form onSubmit={handleSubmit(onClickAddDpt)}>
                 <div>
+                <Field name="dptName" component={renderInputField} placeholder="Department's Name" /><br />
                 </div>
                 <br /> <hr />
                 <p align="center"><button type="submit" className="btnSubmit" disabled={invalid || submitting}>Submit</button>&nbsp;&nbsp;&nbsp;
@@ -41,33 +42,17 @@ let AddDptComponent = ({  }) => (
     )
 
 AddDptComponent.propTypes = {
+    onClickAddDpt: PropTypes.func.isRequired
 }
 
 // Reset the form after submission
 const afterSubmit = (result, dispatch) =>
-    dispatch(reset('SSSSSSSSForm'));
+    dispatch(reset('addDptForm'));
 
 AddDptComponent = reduxForm({
-    form: 'SSSSSSSSForm',
+    form: 'addDptForm',
     validate,
     onSubmitSuccess: afterSubmit
 })(AddDptComponent)
-
-// Decorate with connect to read form values
-const selector = formValueSelector('SSSSSSSSForm') // <-- same as form name
-AddDptComponent = connect(
-    state => {
-        const ZZZZZZZZZZZZZZZZ = selector(state, '');
-        return { ZZZZZZZZZZZZZZZZ }
-    }
-)(AddDptComponent)
-
-
-AddDptComponent = connect(
-    state => ({
-        initialValues: {
-        }
-    })
-)(AddDptComponent)
 
 export default AddDptComponent

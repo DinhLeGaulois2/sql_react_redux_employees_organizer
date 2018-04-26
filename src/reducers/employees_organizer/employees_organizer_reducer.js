@@ -142,6 +142,12 @@ const employees_organizer_reducer = (state = initialStates, action) => {
                 menuStatus: action.type
             })
         }
+
+        case cst.MENU_ADD: {
+            return Object.assign({}, state, {
+                menuStatus: action.type
+            })
+        }
     }
     return state;
 }

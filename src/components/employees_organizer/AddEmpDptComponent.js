@@ -13,7 +13,7 @@ const validate = values => {
     return errors
 }
 
-let AddEmpDptComponent = ({  }) => (
+let AddEmpDptComponent = ({ handleSubmit, invalid, submitting, reset,  }) => (
         <div>
             <div className="container" style={{ 'backgroundColor': 'white' }}>
                 <div align="center" className="mainTitle" style={{

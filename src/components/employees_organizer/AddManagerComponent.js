@@ -13,7 +13,7 @@ const validate = values => {
     return errors
 }
 
-let AddManagerComponent = ({  }) => (
+let AddManagerComponent = ({ handleSubmit, invalid, submitting, reset,  }) => (
         <div>
             <div className="container" style={{ 'backgroundColor': 'white' }}>
                 <div align="center" className="mainTitle" style={{

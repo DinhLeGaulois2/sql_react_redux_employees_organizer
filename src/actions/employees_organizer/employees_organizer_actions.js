@@ -5,7 +5,6 @@ import cst from '../../constants/employees_organizer/cst'
 const employees_organizer_actions = {
     addDepartment: (data) => {
         return dispatch => {
-
             axios.post("/api/add/department", data)
                 .then(response => {
                     dispatch({
@@ -168,6 +167,7 @@ const employees_organizer_actions = {
                         })
                         .catch(err => { alert(err) })
                 }
+                else dispatch({ type: actionStatus })
             }
         }
     }

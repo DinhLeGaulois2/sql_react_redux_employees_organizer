@@ -5,8 +5,8 @@ import actions from '../../actions/employees_organizer/employees_organizer_actio
 import AddUIComponent from '../../components/employees_organizer/AddUIComponent'
 
 const mapStateToProps = (state) => ({
-    status: state.courses.status,
-    menuStatus: state.courses.menuStatus
+    status: state.empl.status,
+    menuStatus: state.empl.menuStatus
 })
 
 const mapDispatchToProps = (dispatch) => ({

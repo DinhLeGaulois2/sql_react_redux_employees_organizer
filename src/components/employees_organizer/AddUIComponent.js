@@ -32,16 +32,16 @@ const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
         </td></tr></tbody></table>
         {menuStatus == cst.MENU_ADD &&
             <div>
-                {status === cst.ADD_DPT_SUCCESS &&
+                {status === cst.ADD_DPT &&
                     <AddDptContainer />
                 }
-                {status === cst.ADD_EMP_SUCCESS &&
+                {status === cst.ADD_EMP &&
                     <AddEmpContainer />
                 }
-                {status === cst.ADD_MANAGER_SUCCESS &&
+                {status === cst.ADD_MANAGER &&
                     <AddEmpDptContainer />
                 }
-                {status === cst.ADD_EMP_DPT_SUCCESS &&
+                {status === cst.ADD_EMP_DPT &&
                     <AddManagerContainer />
                 }
             </div>
