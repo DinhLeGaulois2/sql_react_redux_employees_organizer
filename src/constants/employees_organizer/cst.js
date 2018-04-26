@@ -1,6 +1,12 @@
 const cst = {
     ADD_DPT = "ADD_DPT",
     ADD_DPT_SUCCESS = "ADD_DPT_SUCCESS",
+
+    ADD_MANAGER = "",
+    ADD_MANAGER_SUCCESS = "",
+
+    ADD_EMP_DPT = "ADD_EMP_DPT",
+    ADD_EMP_DPT_SUCCESS = "ADD_EMP_DPT_SUCCESS",
     
     ADD_EMP = "ADD_EMP",
     ADD_EMP_SUCCESS = "ADD_EMP_SUCCESS",

@@ -3,30 +3,6 @@ import axios from "axios"
 import cst from '../../constants/employees_organizer/cst'
 
 const myActions = {
-    addDpt: (data) => {
-        return dispatch => {
-            axios.get("/api/", data)
-                .then(response => {
-                    dispatch({
-                        type: cst.ADD_DPT_SUCCESS,
-                    })
-                })
-                .catch(err => { console.log(err) })
-        }
-    },
-
-    addEmp: (data) => {
-        return dispatch => {
-            axios.get("/api/", data)
-                .then(response => {
-                    dispatch({
-                        type: cst.ADD_EMP_SUCCESS,
-                    })
-                })
-                .catch(err => { console.log(err) })
-        }
-    },
-
     displayDptById: (dId) => {
         return dispatch => {
             axios.get("/api/get/department/" + dId)
@@ -131,9 +107,50 @@ const myActions = {
     setStatus: (mainStatus, actionStatus) => {
         return dispatch => {
             if (mainStatus.length > 0) dispatch({ type: mainStatus })
-            if (actionStatus.length > 0) dispatch({ type: actionStatus })
+            if (actionStatus.length > 0) {
+                if (actionStatus == cst.ADD_DPT) {
+                    axios.post("/api/add/department", data)
+                        .then(response => {
+                            dispatch({
+                                type: cst.ADD_DPT_SUCCESS,
+                            })
+                        })
+                        .catch(err => { console.log(err) })
+                }
+                else if (actionStatus == cst.ADD_EMP) {
+                    axios.post("/api/add/employee", data)
+                        .then(response => {
+                            dispatch({
+                                type: cst.ADD_EMP_SUCCESS,
+                            })
+                        })
+                        .catch(err => { console.log(err) })
+                }
+                else if (actionStatus == cst.ADD_EMP_DPT) {
+
+                }
+                else if (actionStatus == cst.ADD_MANAGER) {
+                    axios.post("/api/add/dept-manager", data)
+                        .then(response => {
+                            dispatch({
+                                type: cst.ADD_MANAGER_SUCCESS,
+                            })
+                        })
+                        .catch(err => { console.log(err) })
+                }                
+                else if (actionStatus == cst.ADD_EMP_DPT) {
+                    axios.post("/api/add/dept-manager", data)
+                        .then(response => {
+                            dispatch({
+                                type: cst.ADD_EMP_DPT_SUCCESS,
+                            })
+                        })
+                        .catch(err => { console.log(err) })
+                }
+            }
         }
     }
+}
 }
 
 export default myActions

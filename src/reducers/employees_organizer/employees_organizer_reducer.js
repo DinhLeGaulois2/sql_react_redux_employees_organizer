@@ -6,7 +6,7 @@ const initialStates = {
     menuStatus: ""
 }
 
-const myReducer = (state = initialStates, action) => {
+const employees_organizer_reducer = (state = initialStates, action) => {
     switch (action.type) {
         case cst.ADD_DPT: {
             return Object.assign({}, state, {
@@ -18,12 +18,32 @@ const myReducer = (state = initialStates, action) => {
                 status: action.type
             })
         }
+        case cst.ADD_MANAGER: {
+            return Object.assign({}, state, {
+                status: action.type
+            })
+        }
+        case cst.ADD_MANAGER_SUCCESS: {
+            return Object.assign({}, state, {
+                status: action.type
+            })
+        }
         case cst.ADD_EMP: {
             return Object.assign({}, state, {
                 status: action.type
             })
         }
         case cst.ADD_EMP_SUCCESS: {
+            return Object.assign({}, state, {
+                status: action.type
+            })
+        }
+        case cst.ADD_EMP_DPT: {
+            return Object.assign({}, state, {
+                status: action.type
+            })
+        }
+        case cst.ADD_EMP_DPT_SUCCESS: {
             return Object.assign({}, state, {
                 status: action.type
             })
@@ -126,4 +146,4 @@ const myReducer = (state = initialStates, action) => {
     return state;
 }
 
-export default myReducer
+export default employees_organizer_reducer
