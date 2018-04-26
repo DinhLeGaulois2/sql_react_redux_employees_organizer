@@ -4,45 +4,45 @@ import PropTypes from 'prop-types'
 import '../../style.scss'
 import cst from '../../constants/employees_organizer/cst'
 
-import AddInstructorContainer from '../../containers/employees_organizer/AddInstructorContainer'
-import AddStudentContainer from '../../containers/employees_organizer/AddStudentContainer'
-import AddCourseContainer from '../../containers/employees_organizer/AddCourseContainer'
-import AddDepartmentContainer from '../../containers/employees_organizer/AddDepartmentContainer'
+import AddDptContainer from '../../containers/employees_organizer/AddDptContainer'
+import AddEmpContainer from '../../containers/employees_organizer/AddEmpContainer'
+import AddSalaryContainer from '../../containers/employees_organizer/AddSalaryContainer'
+import AddTitleContainer from '../../containers/employees_organizer/AddTitleContainer'
 
 const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
     <div style={{ 'backgroundColor': 'gray' }}>
         <table align="center" style={{ 'backgroundColor': 'black', 'width': '100%' }}><tbody><tr><td align="center" style={{ 'padding': '10px' }}>
             <button type="button" className="btn" onClick={e => {
                 e.preventDefault()
-                onClickChangeStatus("", cst.ADD_INSTRUCTOR)
-            }}>Add Instructor</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                onClickChangeStatus("", cst.ADD_DPT)
+            }}>Add Department</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" className="btn" onClick={e => {
                 e.preventDefault()
-                onClickChangeStatus("", cst.ADD_STUDENT)
-            }}>Add Student</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                onClickChangeStatus("", cst.ADD_EMP)
+            }}>Add Employee</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" className="btn" onClick={e => {
                 e.preventDefault()
-                onClickChangeStatus("", cst.ADD_COURSE)
-            }}>Add Course</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                onClickChangeStatus("", cst.ADD_SALARY)
+            }}>Add Salary</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" className="btn" onClick={e => {
                 e.preventDefault()
-                onClickChangeStatus("", cst.ADD_DEPARTMENT)
-            }}>Add Department</button>
+                onClickChangeStatus("", cst.ADD_TITLE)
+            }}>Add Title</button>
             <br />
         </td></tr></tbody></table>
         {menuStatus == cst.MENU_ADD &&
             <div>
-                {status === cst.ADD_INSTRUCTOR &&
-                    <AddInstructorContainer />
+                {status === cst.ADD_DPT &&
+                    <AddDptContainer />
                 }
-                {status === cst.ADD_STUDENT &&
-                    <AddStudentContainer />
+                {status === cst.ADD_EMP &&
+                    <AddEmpContainer />
                 }
-                {status === cst.ADD_COURSE &&
-                    <AddCourseContainer />
+                {status === cst.ADD_SALARY &&
+                    <AddSalaryContainer />
                 }
-                {status === cst.ADD_DEPARTMENT &&
-                    <AddDepartmentContainer />
+                {status === cst.ADD_TITLE &&
+                    <AddTitleContainer />
                 }
             </div>
         }
