@@ -144,6 +144,8 @@ const employees_organizer_actions = {
                 else if (actionStatus == cst.DISPLAY_EMP) {
                     axios.get("/api/get/employees")
                         .then(response => {
+                            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+                            console.log("/api/get/employees, data: " + JSON.stringify(response, null, 5))
                             dispatch({
                                 type: cst.DISPLAY_EMP_SUCCESS,
                                 payload: response.data

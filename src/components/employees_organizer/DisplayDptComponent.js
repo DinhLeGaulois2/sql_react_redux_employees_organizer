@@ -12,7 +12,7 @@ const DisplayDptComponent = ({ dpts, onClickDelete }) => (
         <table align="center" style={{ 'width': '80%' }}><tbody>
             {dpts.map((dpt, index) =>
                 <tr key={index}><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px', 'borderRadius': '20px' }}>
-                    <div onClick={e => { onClickShowACourse(dpt.courseId) }} className="relative">
+                    <div className="relative">
                         <h3 align="center" className="centeredChapterTitle"><b>Department</b>: {dpt.name}</h3>
                         <button type="button" className="btnDelete" onClick={e => {
                             e.preventDefault()
