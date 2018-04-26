@@ -8,7 +8,7 @@ const number = value =>
     value && isNaN(Number(value)) ? 'Must be a number' : undefined
 
 const myDate = value =>
-    value && !/^(([1][0-2])?[1-9])-(([1-3][0-9])?[1-9])-20[1-3][0-9]/ ? 'Must be a Date with the format "MM-DD-YYYY' : undefined
+    value && !/^(0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])[-](19|20)\d\d$/i.test(value) ? 'Must be a Date with the format "MM-DD-YYYY' : undefined
 
 const validate = values => {
     const errors = {}
@@ -34,14 +34,14 @@ const validate = values => {
     if (!values.title_to_date) {
         errors.title_to_date = "Required"
     }
-    if (!values.salary) {
-        errors.salary = "Required"
-    }
     if (!values.salary_from_date) {
         errors.salary_from_date = "Required"
     }
     if (!values.salary_to_date) {
         errors.salary_to_date = "Required"
+    }
+    if (!values.salary) {
+        errors.salary = "Required"
     }
     return errors
 }
@@ -68,18 +68,18 @@ let AddEmpComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddEmp
                     <Field name="first_name" component={renderInputField} placeholder="First Name" /><br />
                     <Field name="last_name" component={renderInputField} placeholder="Last Name" /><br />
                     <Field name="birth_date" component={renderInputField} validate={myDate} placeholder="Birth's Date (MM-DD-YYYY)" /><br />
-                    <Field name="hire_date" component={renderInputField} validate={myDate} placeholder="Hire Date (MM-DD-YYYY)" /><br />
+                    <Field name="hire_date" component={renderInputField} placeholder="Hire Date (MM-DD-YYYY)" /><br />
                     <label>Title: &nbsp;</label>
                     <Field name="title" component='select'>
                         <option></option>
                         <option value="Manager">Manager</option>
                         <option value="Employee">Employee</option>
                     </Field><br />
-                    <Field name="title_from_date" component={renderInputField} validate={myDate} placeholder="Title from Date (MM-DD-YYYY)" /><br />
-                    <Field name="title_to_date" component={renderInputField} validate={myDate} placeholder="Title to Date (MM-DD-YYYY)" /><br />
+                    <Field name="title_from_date" component={renderInputField} placeholder="Title from Date (MM-DD-YYYY)" /><br />
+                    <Field name="title_to_date" component={renderInputField} placeholder="Title to Date (MM-DD-YYYY)" /><br />
                     <Field name="salary" component={renderInputField} validate={number} placeholder="Salary" /><br />
-                    <Field name="salary_from_date" component={renderInputField} validate={myDate} placeholder="Salary from Date (MM-DD-YYYY)" /><br />
-                    <Field name="salary_to_date" component={renderInputField} validate={myDate} placeholder="Salary to Date (MM-DD-YYYY)" /><br />
+                    <Field name="salary_from_date" component={renderInputField} placeholder="Salary from Date (MM-DD-YYYY)" /><br />
+                    <Field name="salary_to_date" component={renderInputField} placeholder="Salary to Date (MM-DD-YYYY)" /><br />
                 </div>
                 <br /> <hr />
                 <p align="center"><button type="submit" className="btnSubmit" disabled={invalid || submitting}>Submit</button>&nbsp;&nbsp;&nbsp;
