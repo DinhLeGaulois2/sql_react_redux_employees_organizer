@@ -17,7 +17,27 @@ const employees_organizer_actions = {
 
     addEmployee: (data) => {
         return dispatch => {
-            axios.post("/api/add/employee", data)
+            let obj = {
+                employee: {        
+                    birth_date: data.birth_date,
+                    first_name: data.first_name,
+                    last_name: data.last_name,
+                    gender: data.gender,
+                    hire_date: data.hire_date
+                },
+                title: {
+                    title: data.title,
+                    from_date: data.title_from_date,
+                    to_date: data.title_to_date
+                },
+                salary: {        
+                    salary: data.salary,
+                    from_date: data.salary_from_date,
+                    to_date: data.salary_to_date
+                }
+            }
+
+            axios.post("/api/add/employee", obj)
                 .then(response => {
                     dispatch({
                         type: cst.ADD_EMP_SUCCESS,

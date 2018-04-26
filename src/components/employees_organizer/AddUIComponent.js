@@ -20,14 +20,14 @@ const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
                 e.preventDefault()
                 onClickChangeStatus("", cst.ADD_EMP)
             }}>Add Employee</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" className="btn" onClick={e => {
+            {/* <button type="button" className="btn" onClick={e => {
                 e.preventDefault()
                 onClickChangeStatus("", cst.ADD_MANAGER)
             }}>Add Manager</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button" className="btn" onClick={e => {
                 e.preventDefault()
                 onClickChangeStatus("", cst.ADD_EMP_DPT)
-            }}>Add Employee-Department</button>
+            }}>Add Employee-Department</button> */}
             <br />
         </td></tr></tbody></table>
         {menuStatus == cst.MENU_ADD &&
@@ -38,12 +38,12 @@ const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
                 {status === cst.ADD_EMP &&
                     <AddEmpContainer />
                 }
-                {status === cst.ADD_MANAGER &&
+                {/* {status === cst.ADD_MANAGER &&
                     <AddEmpDptContainer />
                 }
                 {status === cst.ADD_EMP_DPT &&
                     <AddManagerContainer />
-                }
+                } */}
             </div>
         }
     </div>

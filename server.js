@@ -43,7 +43,7 @@ app.use(function (err, req, res, next) {
     });
 })
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
     initValues();
     app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);

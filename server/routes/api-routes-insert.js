@@ -58,34 +58,27 @@ module.exports = function (app) {
     // Need to use 'transaction'
     app.post("/api/add/employee", (req, res, next) => {
         const obj = req.body
-        return sequelize.transaction(t => {
-            return db.title.findOrCreate({
-                where: {
-                    title: obj.title,
-                    from_date: obj.title_from_date,
-                    to_date: obj.title_to_date
-                }
-            }, {}, { transaction: t }).then(data => {
-                return db.salary.findOrCreate({
+        db.employee.findOrCreate({ where: obj.employee })
+            .then(data => {
+                let eId = data[0].id
+                db.title.findOrCreate({
                     where: {
-                        salary: obj.salary,
-                        from_date: obj.salary_from_date,
-                        to_date: obj.salary_to_date
+                        employeeId: eId,
+                        title: obj.title.title,
+                        from_date: obj.title.from_date,
+                        to_date: obj.title.to_date
                     }
-                }, {}, { transaction: t })
-                    .then(data => {
-                        return db.employee.findOrCreate({
-                            where: {
-                                birth_date: obj.birth_date,
-                                first_name: obj.first_name,
-                                last_name: obj.last_name,
-                                gender: obj.gender,
-                                hire_date: obj.hire_date
-                            }
-                        }) // No "{ transaction: t }" for the last action
-                    })
-            })
-        }).then(data => { res.status(200).json(data) })
-            .catch(next)
+                }).then(data => {
+                    db.salary.findOrCreate({
+                        where: {
+                            employeeId: eId,
+                            salary: obj.title.salary,
+                            from_date: obj.title.from_date,
+                            to_date: obj.title.to_date
+                        }
+                    }).then(data => { res.status(200).json(data) })
+                        .catch(next)
+                }).catch(next)
+            }).catch(next)
     })
 }

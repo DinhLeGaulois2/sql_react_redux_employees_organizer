@@ -21,6 +21,9 @@ const validate = values => {
     if (!values.last_name) {
         errors.last_name = "*"
     }
+    if (!values.gender) {
+        errors.gender = "*"
+    }
     if (!values.birth_date) {
         errors.birth_date = "*"
     }
@@ -72,6 +75,13 @@ let AddEmpComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddEmp
                     <Field name="first_name" component={renderInputField} placeholder="First Name" /><br />
                     <Field name="last_name" component={renderInputField} placeholder="Last Name" /><br />
                     <Field name="birth_date" component={renderInputField} validate={myDate} placeholder="Birth's Date (MM-DD-YYYY)" /><br />
+                    
+                    <label>Gender: &nbsp;</label>
+                    <Field name="gender" component='select'>
+                        <option></option>
+                        <option value="F">Female</option>
+                        <option value="M">Male</option>
+                    </Field><br /><br />
                     <Field name="hire_date" component={renderInputField} placeholder="Hire Date (MM-DD-YYYY)" /><br />
                     <label>Title: &nbsp;</label>
                     <Field name="title" component='select'>
