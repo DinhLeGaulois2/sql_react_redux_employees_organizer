@@ -6,8 +6,6 @@ import cst from '../../constants/employees_organizer/cst'
 
 import AddDptContainer from '../../containers/employees_organizer/AddDptContainer'
 import AddEmpContainer from '../../containers/employees_organizer/AddEmpContainer'
-import AddSalaryContainer from '../../containers/employees_organizer/AddSalaryContainer'
-import AddTitleContainer from '../../containers/employees_organizer/AddTitleContainer'
 
 const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
     <div style={{ 'backgroundColor': 'gray' }}>
@@ -19,15 +17,7 @@ const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
             <button type="button" className="btn" onClick={e => {
                 e.preventDefault()
                 onClickChangeStatus("", cst.ADD_EMP)
-            }}>Add Employee</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" className="btn" onClick={e => {
-                e.preventDefault()
-                onClickChangeStatus("", cst.ADD_SALARY)
-            }}>Add Salary</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" className="btn" onClick={e => {
-                e.preventDefault()
-                onClickChangeStatus("", cst.ADD_TITLE)
-            }}>Add Title</button>
+            }}>Add Employee</button>
             <br />
         </td></tr></tbody></table>
         {menuStatus == cst.MENU_ADD &&
@@ -37,12 +27,6 @@ const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
                 }
                 {status === cst.ADD_EMP &&
                     <AddEmpContainer />
-                }
-                {status === cst.ADD_SALARY &&
-                    <AddSalaryContainer />
-                }
-                {status === cst.ADD_TITLE &&
-                    <AddTitleContainer />
                 }
             </div>
         }

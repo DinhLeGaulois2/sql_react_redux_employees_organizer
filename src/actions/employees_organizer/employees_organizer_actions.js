@@ -27,33 +27,22 @@ const myActions = {
         }
     },
 
-    addSalary: (data) => {
+    displayDptById: (dId) => {
         return dispatch => {
-            axios.get("/api/", data)
+            axios.get("/api/get/department/" + dId)
                 .then(response => {
                     dispatch({
-                        type: cst.ADD_SALARY_SUCCESS,
+                        type: cst.DISPLAY_DPT_BY_ID_SUCCESS,
+                        payload: response.data
                     })
                 })
                 .catch(err => { console.log(err) })
         }
     },
 
-    addTitle: (data) => {
+    displayDpt: () => {
         return dispatch => {
-            axios.get("/api/", data)
-                .then(response => {
-                    dispatch({
-                        type: cst.ADD_TITLE_SUCCESS,
-                    })
-                })
-                .catch(err => { console.log(err) })
-        }
-    },
-
-    displayDpt: (data) => {
-        return dispatch => {
-            axios.get("/api/", data)
+            axios.get("/api/get/departments")
                 .then(response => {
                     dispatch({
                         type: cst.DISPLAY_DPT_SUCCESS,
@@ -64,9 +53,9 @@ const myActions = {
         }
     },
 
-    displayEmpbyId: (data) => {
+    displayEmpById: (eId) => {
         return dispatch => {
-            axios.get("/api/", data)
+            axios.get("/api/get/employee/", eId)
                 .then(response => {
                     dispatch({
                         type: cst.DISPLAY_EMP_BY_ID_SUCCESS,
@@ -77,9 +66,9 @@ const myActions = {
         }
     },
 
-    displayEmp: (data) => {
+    displayEmp: () => {
         return dispatch => {
-            axios.get("/api/", data)
+            axios.get("/api/get/employees")
                 .then(response => {
                     dispatch({
                         type: cst.DISPLAY_EMP_SUCCESS,
@@ -90,34 +79,59 @@ const myActions = {
         }
     },
 
-    linkEmp2Dpt: (data) => {
+    deleteEmp: (eId) => {
         return dispatch => {
-            axios.get("/api/", data)
+            axios.delete("/api/delete/employee/" + eId)
                 .then(response => {
                     dispatch({
-                        type: cst.LINK_EMP_2_DPT_SUCCESS,
-                        payload: response.data
+                        type: cst.DELETE_EMP_SUCCESS,
                     })
                 })
                 .catch(err => { console.log(err) })
         }
     },
 
-    linkManager2Dpt: (data) => {
+    deleteDpt: (dId) => {
         return dispatch => {
-            axios.get("/api/", data)
+            axios.get("/api/get/department/" + dId)
                 .then(response => {
                     dispatch({
-                        type: cst.LINK_MANAGER_2_DPT_SUCCESS,
+                        type: cst.DELETE_DPT_SUCCESS,
                     })
                 })
                 .catch(err => { console.log(err) })
         }
     },
+
+    // linkEmp2Dpt: (data) => {
+    //     return dispatch => {
+    //         axios.get("/api/", data)
+    //             .then(response => {
+    //                 dispatch({
+    //                     type: cst.LINK_EMP_2_DPT_SUCCESS,
+    //                     payload: response.data
+    //                 })
+    //             })
+    //             .catch(err => { console.log(err) })
+    //     }
+    // },
+
+    // linkManager2Dpt: (data) => {
+    //     return dispatch => {
+    //         axios.get("/api/", data)
+    //             .then(response => {
+    //                 dispatch({
+    //                     type: cst.LINK_MANAGER_2_DPT_SUCCESS,
+    //                 })
+    //             })
+    //             .catch(err => { console.log(err) })
+    //     }
+    // },
 
     setStatus: (mainStatus, actionStatus) => {
         return dispatch => {
             if (mainStatus.length > 0) dispatch({ type: mainStatus })
+            if (actionStatus.length > 0) dispatch({ type: actionStatus })
         }
     }
 }
