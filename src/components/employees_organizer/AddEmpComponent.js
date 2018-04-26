@@ -4,6 +4,8 @@ import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
 import PropTypes from 'prop-types'
 import { renderInputField, renderTextareaField } from '../../common/reduxForm/renderField'
 
+import '../../style.scss'
+
 const number = value =>
     value && isNaN(Number(value)) ? 'Must be a number' : undefined
 
@@ -14,34 +16,34 @@ const validate = values => {
     const errors = {}
 
     if (!values.first_name) {
-        errors.first_name = "Required"
+        errors.first_name = "*"
     }
     if (!values.last_name) {
-        errors.last_name = "Required"
+        errors.last_name = "*"
     }
     if (!values.birth_date) {
-        errors.birth_date = "Required"
+        errors.birth_date = "*"
     }
     if (!values.hire_date) {
-        errors.hire_date = "Required"
+        errors.hire_date = "*"
     }
     if (!values.title) {
-        errors.title = "Required"
+        errors.title = "*"
     }
     if (!values.title_from_date) {
-        errors.title_from_date = "Required"
+        errors.title_from_date = "*"
     }
     if (!values.title_to_date) {
-        errors.title_to_date = "Required"
+        errors.title_to_date = "*"
     }
     if (!values.salary_from_date) {
-        errors.salary_from_date = "Required"
+        errors.salary_from_date = "*"
     }
     if (!values.salary_to_date) {
-        errors.salary_to_date = "Required"
+        errors.salary_to_date = "*"
     }
     if (!values.salary) {
-        errors.salary = "Required"
+        errors.salary = "*"
     }
     return errors
 }
@@ -62,6 +64,8 @@ let AddEmpComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddEmp
             }}>Add New Employee</div>
         </div>
         <br />
+        <p align="center">[Field with <font color="red">*</font> is required]</p>
+
         <div className="container">
             <form onSubmit={handleSubmit(onClickAddEmployee)}>
                 <div>
@@ -74,7 +78,7 @@ let AddEmpComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddEmp
                         <option></option>
                         <option value="Manager">Manager</option>
                         <option value="Employee">Employee</option>
-                    </Field><br />
+                    </Field><br /><br />
                     <Field name="title_from_date" component={renderInputField} placeholder="Title from Date (MM-DD-YYYY)" /><br />
                     <Field name="title_to_date" component={renderInputField} placeholder="Title to Date (MM-DD-YYYY)" /><br />
                     <Field name="salary" component={renderInputField} validate={number} placeholder="Salary" /><br />
@@ -82,8 +86,8 @@ let AddEmpComponent = ({ handleSubmit, invalid, submitting, reset, onClickAddEmp
                     <Field name="salary_to_date" component={renderInputField} placeholder="Salary to Date (MM-DD-YYYY)" /><br />
                 </div>
                 <br /> <hr />
-                <p align="center"><button type="submit" className="btnSubmit" disabled={invalid || submitting}>Submit</button>&nbsp;&nbsp;&nbsp;
-                <button type="button" className="btnSubmit" disabled={submitting} onClick={reset}>Clear Values</button>
+                <p align="center"><button type="submit" className="btn" disabled={invalid || submitting}>Submit</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" className="btn" disabled={submitting} onClick={reset}>Clear Values</button>
                 </p><br />
             </form>
         </div>
