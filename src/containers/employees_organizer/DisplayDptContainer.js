@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import actions from '../../actions/employees_organizer/actions'
-import AddTitleComponent from '../../components/employees_organizer/AddTitleComponent'
+import actions from '../../actions/employees_organizer/employees_organizer_actions'
+import DisplayDptComponent from '../../components/employees_organizer/DisplayDptComponent'
 
 const mapStateToProps = (state) => ({
     bookings: state.TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
@@ -13,9 +13,9 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 // You have to connect() to any reducers that you wish to connect to yourself
-const AddTitleContainer = connect(
+const DisplayDptContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(AddTitleComponent)
+)(DisplayDptComponent)
 
-export default AddTitleContainer
+export default DisplayDptContainer

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import DisplayUIComponent from '../../components/employees_organizer/DisplayUIComponent'
-import actions from '../../actions/employees_organizer/courseAction'
+import actions from '../../actions/employees_organizer/employees_organizer_actions'
 
 const mapStateToProps = (state) => ({
     status: state.courses.status,

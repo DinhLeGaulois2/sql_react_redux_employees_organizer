@@ -1,5 +1,5 @@
 {
-  "name": "mongodb_react_redux_addr_book",
+  "name": "",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,16 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack && nodemon server"
   },
-  "author": "Dinh HUYNH",
+  "author": "",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
-    "bluebird": "*",
     "body-parser": "^1.17.2",
     "core-js": "^2.4.1",
     "express": "^4.16.1",
-    "mongoose": "*",
-    "morgan": "*",
+    "mysql": "^2.10.2",
+    "mysql2": "^1.5.2",
+    "promise": "^8.0.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
@@ -28,7 +28,8 @@
     "redux-form": "^7.1.1",
     "redux-logger": "^2.6.1",
     "redux-promise-middleware": "^3.2.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "sequelize": "^4.33.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import MainMenuComponent from '../../components/employees_organizer/MainMenuComponent'
-import actions from '../../actions/employees_organizer/courseAction'
+import actions from '../../actions/employees_organizer/employees_organizer_actions'
 
 const mapStateToProps = (state) => ({
     menuStatus: state.courses.menuStatus
