@@ -6,16 +6,13 @@ module.exports = function (sequelize, Sequelize) {
             autoIncrement: true,
         },
         title:{
-            type: Sequelize.STRING,
-            primaryKey: true
+            type: Sequelize.STRING
         },
         from_date: {
-            type: Sequelize.DATE,
-            primaryKey: true
+            type: Sequelize.DATE
         },
         to_date: {
-            type: Sequelize.DATE,
-            primaryKey: true
+            type: Sequelize.DATE
         }
     });
 

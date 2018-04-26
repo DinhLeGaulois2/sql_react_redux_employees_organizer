@@ -6,12 +6,10 @@ module.exports = function (sequelize, Sequelize) {
             autoIncrement: true,
         },
         from_date: {
-            type: Sequelize.DATE,
-            primaryKey: true
+            type: Sequelize.DATE
         },
         to_date: {
-            type: Sequelize.DATE,
-            primaryKey: true
+            type: Sequelize.DATE
         }
     });
 

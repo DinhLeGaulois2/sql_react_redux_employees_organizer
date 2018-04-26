@@ -12,12 +12,10 @@ module.exports = function (sequelize, Sequelize) {
             }
         },
         from_date: {
-            type: Sequelize.DATE,
-            primaryKey: true
+            type: Sequelize.DATE
         },
         to_date: {
-            type: Sequelize.DATE,
-            primaryKey: true
+            type: Sequelize.DATE
         }
     });
 

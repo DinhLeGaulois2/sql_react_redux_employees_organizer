@@ -18,53 +18,35 @@ const employees_organizer_actions = {
     addEmployee: (data) => {
         return dispatch => {
             let obj = {
-                employee: {        
-                    birth_date: data.birth_date,
+                employee: {
+                    birth_date: new Date(data.birth_date),
                     first_name: data.first_name,
                     last_name: data.last_name,
                     gender: data.gender,
-                    hire_date: data.hire_date
+                    hire_date: new Date(data.hire_date)
                 },
                 title: {
                     title: data.title,
-                    from_date: data.title_from_date,
-                    to_date: data.title_to_date
+                    from_date: new Date(data.title_from_date),
+                    to_date: new Date(data.title_to_date)
                 },
-                salary: {        
-                    salary: data.salary,
-                    from_date: data.salary_from_date,
-                    to_date: data.salary_to_date
+                department: {
+                    departmentId: data.departmentId,
+                    from_date: new Date(data.dpt_from_date),
+                    to_date: new Date(data.dpt_to_date)
+                },
+                salary: {
+                    salary: parseInt(data.salary),
+                    from_date: new Date(data.salary_from_date),
+                    to_date: new Date(data.salary_to_date)
                 }
             }
-
+            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+            console.log("addEmployee, data: " + JSON.stringify(obj, null, 5))
             axios.post("/api/add/employee", obj)
                 .then(response => {
                     dispatch({
                         type: cst.ADD_EMP_SUCCESS,
-                    })
-                })
-                .catch(err => { alert(err) })
-        }
-    },
-
-    addEmpDpt: (data) => {
-        return dispatch => {
-            axios.post("/api/add/dept-emp", data)
-                .then(response => {
-                    dispatch({
-                        type: cst.ADD_EMP_DPT_SUCCESS,
-                    })
-                })
-                .catch(err => { alert(err) })
-        }
-    },
-
-    addManager: (data) => {
-        return dispatch => {
-            axios.post("/api/add/dept-manager", data)
-                .then(response => {
-                    dispatch({
-                        type: cst.ADD_MANAGER_SUCCESS,
                     })
                 })
                 .catch(err => { alert(err) })
@@ -101,12 +83,8 @@ const employees_organizer_actions = {
         return dispatch => {
             axios.delete("/api/delete/employee/" + eId)
                 .then(response => {
-                    //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-                    console.log("/api/delete/employee/: " + JSON.stringify(response, null, 5))
                     axios.get("/api/get/employees")
                         .then(response => {
-                            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-                            console.log("/api/delete/employee/, getbacks : " + JSON.stringify(response, null, 5))
                             dispatch({
                                 type: cst.DISPLAY_EMP_SUCCESS,
                                 payload: response.data
@@ -184,6 +162,20 @@ const employees_organizer_actions = {
                                 type: cst.DISPLAY_EMP_SUCCESS,
                                 payload: response.data
                             })
+                        })
+                        .catch(err => { alert(err) })
+                }
+                else if (actionStatus == cst.ADD_EMP) {
+                    axios.get("/api/get/departments")
+                        .then(response => {
+
+                            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+                            console.log("Get Dpts 4 Add: " + JSON.stringify(response, null, 5))
+                            dispatch({
+                                type: cst.DISPLAY_DPT_SUCCESS,
+                                payload: response.data
+                            })
+                            dispatch({ type: actionStatus })
                         })
                         .catch(err => { alert(err) })
                 }

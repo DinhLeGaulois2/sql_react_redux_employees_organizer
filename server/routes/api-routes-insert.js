@@ -72,11 +72,29 @@ module.exports = function (app) {
                     db.salary.findOrCreate({
                         where: {
                             employeeId: eId,
-                            salary: obj.title.salary,
-                            from_date: obj.title.from_date,
-                            to_date: obj.title.to_date
+                            salary: obj.salary.salary,
+                            from_date: obj.salary.from_date,
+                            to_date: obj.salary.to_date
                         }
-                    }).then(data => { res.status(200).json(data) })
+                    }).then(data => { 
+                        if(obj.title.title=="Manager"){
+                            db.dept_manager.findOrCreate({ where: {
+                                departmentId: obj.department.departmentId,
+                                employeeId: eId,
+                                from_date: obj.department.from_date,
+                                to_date: obj.department.to_date,
+                            }})
+                        }
+                        else{
+                            db.dept_emp.findOrCreate({ where: {
+                                departmentId: obj.department.departmentId,
+                                employeeId: eId,
+                                from_date: obj.department.from_date,
+                                to_date: obj.department.to_date,
+                            }})
+                        }
+                        res.status(200).json(data) 
+                    })
                         .catch(next)
                 }).catch(next)
             }).catch(next)
