@@ -41,8 +41,6 @@ const employees_organizer_actions = {
                     to_date: new Date(data.salary_to_date)
                 }
             }
-            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-            console.log("addEmployee, data: " + JSON.stringify(obj, null, 5))
             axios.post("/api/add/employee", obj)
                 .then(response => {
                     dispatch({
@@ -168,9 +166,6 @@ const employees_organizer_actions = {
                 else if (actionStatus == cst.ADD_EMP) {
                     axios.get("/api/get/departments")
                         .then(response => {
-
-                            //KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-                            console.log("Get Dpts 4 Add: " + JSON.stringify(response, null, 5))
                             dispatch({
                                 type: cst.DISPLAY_DPT_SUCCESS,
                                 payload: response.data
