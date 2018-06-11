@@ -53,7 +53,7 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 > 
 > 3 - Open ANOTHER termimal, and execute (in the folder "**client**"): **npm install** (to install **dependencies**). Then "**npm run start**"
 >
-> 4 - Open your web browser (***Firefox***, ***Chrome***, etc.) then, enter: **localhost:3000**<br/>
+> 4 - Open your web browser (***Firefox***, ***Chrome***, etc.) then, enter: **localhost:3000**
 
 
 ---
