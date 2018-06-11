@@ -14,28 +14,29 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 ---
 
 ## Technologies
+> * **Security**: **JWT-simple**, **bcrypt-nodejs**, **passport** (**passport-jwt**, **passport-local**)
 > * **Front End**: ***React-Redux***
 > * **Back End**: ***Express/Node.js*** + ***Sequelize*** (ORM)
 > * **Database**: ***mySQL***
 
 ## Enhanced Entity-Relationship
 
-![alt text](assets/img/SampleEmployees.jpg)
+![alt text](client/assets/img/SampleEmployees.jpg)
 
 ---
 
 ## User Interfaces
 ### Add New Employee
 
-![alt text](assets/img/addEmployee.jpg)
+![alt text](client/assets/img/addEmployee.jpg)
 
 ### Display All Departments
 
-![alt text](assets/img/display_dpts.jpg)
+![alt text](client/assets/img/display_dpts.jpg)
 
 ### Display All Employees
 
-![alt text](assets/img/display_empls.jpg)
+![alt text](client/assets/img/display_empls.jpg)
 
 ---
 
@@ -55,7 +56,7 @@ Building a project based on an EER (Enhanced Entity-Relationship). The goal is t
 
 At the project's root folder, we have a file name [**server.js**](https://github.com/DinhLeGaulois2/sql_react_redux_employees_organizer/blob/master/server.js), by the end, we have:
 
-![alt text](assets/img/server_config.jpg)
+![alt text](client/assets/img/server_config.jpg)
 
 It's very important to follow the instruction, otherwise, you could have very disappointed surprises ...
 
