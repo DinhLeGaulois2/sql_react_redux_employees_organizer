@@ -1,19 +1,18 @@
 const Sequelize = require('sequelize');
 const models = require('../models') // DB's models
-var sequelize = models.sequelize
-
-const Op = Sequelize.Op;
+const passport = require('passport');
+const requireAuth = passport.authenticate('jwt', { session: false });
 
 const db = require("../models");
 
 module.exports = function (app) {
-    app.post("/api/add/department", (req, res, next) => {
+    app.post("/api/add/department", requireAuth, (req, res, next) => {
         db.department.findOrCreate({ where: { name: req.body.dptName } })
             .then(data => res.status(200).json(data))
             .catch(next)
     })
 
-    app.post("/api/add/dept-manager", (req, res, next) => {
+    app.post("/api/add/dept-manager", requireAuth, (req, res, next) => {
         const obj = req.body
         db.employee.findOne({ where: { id: obj.employeeId } })
             .then(data => {
@@ -34,7 +33,7 @@ module.exports = function (app) {
             }).catch(next)
     })
 
-    app.post("/api/add/dept-emp", (req, res, next) => {
+    app.post("/api/add/dept-emp", requireAuth, (req, res, next) => {
         const obj = req.body
         db.employee.findOne({ where: { id: obj.employeeId } })
             .then(data => {
@@ -56,7 +55,7 @@ module.exports = function (app) {
     })
 
     // Need to use 'transaction'
-    app.post("/api/add/employee", (req, res, next) => {
+    app.post("/api/add/employee", requireAuth, (req, res, next) => {
         const obj = req.body
         db.employee.findOrCreate({ where: obj.employee })
             .then(data => {

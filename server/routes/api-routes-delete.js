@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const models = require('../models') // DB's models
 var sequelize = models.sequelize
-
-const Op = Sequelize.Op;
+const passport = require('passport');
+const requireAuth = passport.authenticate('jwt', { session: false });
 
 const db = require("../models");
 
@@ -11,7 +11,7 @@ module.exports = function (app) {
     /////////////////// Need to use TRANSACTION ///////////////////
     ///////////////////////////////////////////////////////////////
 
-    app.delete("/api/delete/department/:id", (req, res, next) => {
+    app.delete("/api/delete/department/:id", requireAuth, (req, res, next) => {
         db.dept_manager.findAll({ where: { id: req.params.id } })
             .then(data => {
                 if (data == null) {
@@ -39,7 +39,7 @@ module.exports = function (app) {
             .catch(next)
     })
 
-    app.delete("/api/delete/employee/:id", (req, res, next) => {
+    app.delete("/api/delete/employee/:id", requireAuth, (req, res, next) => {
         return sequelize.transaction(t => {
             return db.dept_emp.destroy({ // delete "department-employee" relationship
                 where: { employeeId: req.params.id }

@@ -1,14 +1,12 @@
 const Sequelize = require('sequelize');
 const models = require('../models') // DB's models
-var sequelize = models.sequelize
-
-
-const Op = Sequelize.Op;
+const passport = require('passport');
+const requireAuth = passport.authenticate('jwt', { session: false });
 
 const db = require("../models");
 
 module.exports = function (app) {
-    app.get("/api/get/department/:id", (req, res, next) => {
+    app.get("/api/get/department/:id", requireAuth, (req, res, next) => {
         db.department.findAll({
             where: { id: req.params.id },
             attributes: ['id', 'name'],
@@ -27,7 +25,7 @@ module.exports = function (app) {
             .catch(next)
     })
 
-    app.get("/api/get/departments", (req, res, next) => {
+    app.get("/api/get/departments", requireAuth, (req, res, next) => {
         db.department.findAll({
             attributes: ['id', 'name'],
             include: [
@@ -45,7 +43,7 @@ module.exports = function (app) {
             .catch(next)
     })
 
-    app.get("/api/get/employee/:id", (req, res, next) => {
+    app.get("/api/get/employee/:id", requireAuth, (req, res, next) => {
         db.employee.findAll({
             where: { id: req.params.id },
             attributes: ['id', 'birth_date', 'first_name', 'last_name', 'gender'],
@@ -90,7 +88,7 @@ module.exports = function (app) {
             .catch(next)
     })
 
-    app.get("/api/get/employees", (req, res, next) => {
+    app.get("/api/get/employees", requireAuth, (req, res, next) => {
         db.employee.findAll({
             attributes: ['id', 'birth_date', 'first_name', 'last_name', 'gender'],
             include: [

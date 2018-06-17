@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
-
-const Op = Sequelize.Op;
+const passport = require('passport');
+const requireAuth = passport.authenticate('jwt', { session: false });
 
 const db = require("../models");
 
 module.exports = function (app) {
-    app.put("/api/put/employee/salary/", (req, res, next) => {
+    app.put("/api/put/employee/salary/", requireAuth, (req, res, next) => {
         db.salary.findOne({ where: { employeeId: req.body.empId } })
             .then(data => {
                 if (data == null)
@@ -20,7 +20,7 @@ module.exports = function (app) {
             })
     })
 
-    app.put("/api/put/employee/title", (req, res, next) => {
+    app.put("/api/put/employee/title", requireAuth, (req, res, next) => {
         db.title.findOne({ where: { employeeId: req.body.empId } })
             .then(data => {
                 if (data == null)
@@ -36,7 +36,7 @@ module.exports = function (app) {
     })
 
 
-    app.put("/api/put/employee/department", (req, res, next) => {
+    app.put("/api/put/employee/department", requireAuth, (req, res, next) => {
         db.dept_emp.findOne({ where: { employeeId: req.body.empId } })
             .then(data => {
                 if (data == null)
