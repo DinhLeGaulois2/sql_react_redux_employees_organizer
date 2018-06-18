@@ -14,6 +14,10 @@ app.use(cors());
 app.use(bodyParser.json({ type: '*/*' }));
 
 // Import routes and give the server access to them.
+require("./routes/api-routes-delete.js")(app);
+require("./routes/api-routes-insert.js")(app);
+require("./routes/api-routes-read.js")(app);
+require("./routes/api-routes-update.js")(app);
 require("./routes/auth-routes.js")(app);
 
 // Server Setup

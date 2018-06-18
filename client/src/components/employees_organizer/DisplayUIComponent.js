@@ -14,8 +14,8 @@ class DisplayUIComponent extends React.Component {
                 <div style={{ "backgroundColor": "black" }}>
                     <br />
                     <p align="center">
-                        <NavLink to={`${match.url}/departments`} className="navLink" activeStyle={{ color: 'blue', fontSize: 'bold' }}>Show Courses</NavLink>
-                        <NavLink to={`${match.url}/employees`} className="navLink" activeStyle={{ color: 'blue', fontSize: 'bold' }}>Show Instructors</NavLink>
+                        <NavLink to={`${match.url}/departments`} className="navLink" activeStyle={{ color: 'blue', fontSize: 'bold' }}>Show Departments</NavLink>
+                        <NavLink to={`${match.url}/employees`} className="navLink" activeStyle={{ color: 'blue', fontSize: 'bold' }}>Show Employeess</NavLink>
                     </p>
                     <br />
                 </div>

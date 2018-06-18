@@ -4,8 +4,14 @@ import { connect } from 'react-redux'
 import requireAuth from '../../components/requireAuth';
 
 import actions from "../../actions/employees_organizer/employees_organizer_actions"
+import cst from '../../constants/employees_organizer/cst'
 
 class DisplayEmpComponent extends React.Component {
+    constructor(props) {
+        super(props)
+        this.props.setStatus(cst.DISPLAY_EMP)
+    }
+
     render() {
         const { empls, deleteEmp } = this.props
         return (
@@ -35,7 +41,7 @@ class DisplayEmpComponent extends React.Component {
 }
 
 const MapStateToProps = (state) => ({
-    dpts: state.employees.data
+    empls: state.employees.data
 })
 
 export default connect(MapStateToProps, actions)(requireAuth(DisplayEmpComponent))

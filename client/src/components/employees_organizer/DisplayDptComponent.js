@@ -4,8 +4,14 @@ import { connect } from 'react-redux'
 import requireAuth from '../../components/requireAuth';
 
 import actions from "../../actions/employees_organizer/employees_organizer_actions"
+import cst from '../../constants/employees_organizer/cst'
 
 class DisplayDptComponent extends React.Component {
+    constructor(props){
+        super(props)
+        this.props.setStatus(cst.DISPLAY_DPT)
+    }
+
     render() {
         const { dpts, deleteDpt } = this.props
         return (
@@ -31,7 +37,7 @@ class DisplayDptComponent extends React.Component {
 }
 
 const MapStateToProps = (state) => ({
-    dpts: state.deparments.data
+    dpts: state.departments.data
 })
 
 export default connect(MapStateToProps, actions)(requireAuth(DisplayDptComponent))

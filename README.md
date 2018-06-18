@@ -30,6 +30,10 @@ Front-end and Back-end could be deployed on different servers, independently. We
 ---
 
 ## User Interfaces
+### Sign Up
+
+![alt text](client/assets/img/signup.jpg)
+
 ### Add New Employee
 
 ![alt text](client/assets/img/addEmployee.jpg)

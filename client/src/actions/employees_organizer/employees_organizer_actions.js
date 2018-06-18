@@ -171,9 +171,8 @@ const employees_organizer_actions = {
     //     }
     // },
 
-    setStatus: (mainStatus, actionStatus) => {
+    setStatus: (actionStatus) => {
         return dispatch => {
-            if (mainStatus.length > 0) dispatch({ type: mainStatus })
             if (actionStatus.length > 0) {
                 if (actionStatus === cst.DISPLAY_DPT) {
                     axios.get("http://localhost:3090/api/get/departments", {

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 import actions from '../../actions/employees_organizer/employees_organizer_actions'
 import requireAuth from '../../components/requireAuth';
+import cst from '../../constants/employees_organizer/cst'
 
 import '../../style.scss'
 
@@ -63,6 +64,10 @@ const validate = values => {
 }
 
 class AddEmpComponent extends React.Component {
+    constructor(props){
+        super(props)
+        this.props.setStatus(cst.ADD_EMP)
+    }
     render() {
         const { handleSubmit, invalid, submitting, reset, dpts, addEmployee } = this.props
         return (
@@ -142,7 +147,7 @@ class AddEmpComponent extends React.Component {
 }
 
 const MapStateToProps = (state) => ({
-    dpts: state.deparments.data
+    dpts: state.departments.data
 })
 
 // Reset the form after submission
