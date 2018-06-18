@@ -78,7 +78,7 @@ module.exports = {
 
 At the project's root folder, we have a file name [**server.js**](https://github.com/DinhLeGaulois2/sql_react_redux_employees_organizer/blob/master/server.js), by the end, we have:
 
-![alt text](client/assets/img/server_config.jpg)
+![alt text](assets/img/server_config.jpg)
 
 It's very important to follow the instruction, otherwise, you could have very disappointed surprises ...
 
