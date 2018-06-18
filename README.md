@@ -25,26 +25,26 @@ Front-end and Back-end could be deployed on different servers, independently. We
 
 ## Enhanced Entity-Relationship
 
-![alt text](client/assets/img/SampleEmployees.jpg)
+![alt text](assets/img/SampleEmployees.jpg)
 
 ---
 
 ## User Interfaces
 ### Sign Up
 
-![alt text](client/assets/img/signup.jpg)
+![alt text](assets/img/signup.jpg)
 
 ### Add New Employee
 
-![alt text](client/assets/img/addEmployee.jpg)
+![alt text](assets/img/addEmployee.jpg)
 
 ### Display All Departments
 
-![alt text](client/assets/img/display_dpts.jpg)
+![alt text](assets/img/display_dpts.jpg)
 
 ### Display All Employees
 
-![alt text](client/assets/img/display_empls.jpg)
+![alt text](assets/img/display_empls.jpg)
 
 ---
 
