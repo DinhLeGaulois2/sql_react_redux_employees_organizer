@@ -1,43 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
-import cst from '../../constants/employees_organizer/cst'
-
+import { Route, NavLink } from "react-router-dom";
+import requireAuth from '../requireAuth'
+import '../HeaderStyle.css';
 import '../../style.scss'
 
-import AddUIContainer from '../../containers/employees_organizer/AddUIContainer'
-import DisplayUIContainer from '../../containers/employees_organizer/DisplayUIContainer'
+import AddUIComponent from './AddUIComponent'
+import DisplayUIComponent from './DisplayUIComponent'
 
-const MainMenuComponent = ({ menuStatus, changeStatus }) =>
+const MainMenuComponent = ({ match }) =>
     <div>
-        <table style={{ 'backgroundColor': 'black', 'width': '100%' }}><tbody><tr>
-            <td align="center" style={{ 'padding': '10px' }}>
-                {menuStatus == cst.MENU_DISPLAY &&
-                    <button type="button" className="btn" onClick={e => {
-                        e.preventDefault()
-                        changeStatus(cst.MENU_ADD, "")
-                    }}>Add</button>
-                }
-                {menuStatus == cst.MENU_ADD &&
-                    <button type="button" className="btn" onClick={e => {
-                        e.preventDefault()
-                        changeStatus(cst.MENU_DISPLAY, "")
-                    }}>Show</button>
-                }
-            </td>
-        </tr></tbody></table>
-        <br />
-        {menuStatus == cst.MENU_ADD &&
-            <AddUIContainer />
-        }
-        {menuStatus == cst.MENU_DISPLAY &&
-            <DisplayUIContainer />
-        }
+        <div style={{ "backgroundColor": "#1b5c71", "padding": "5px" }}>
+            <NavLink to={`${match.url}/add`} className="navLink" strict activeStyle={{ color: 'blue' }}>Add</NavLink>
+            <NavLink to={`${match.url}/display`} className="navLink" strict activeStyle={{ color: 'blue' }}>Display</NavLink>
+        </div>
+        <Route path={`${match.url}/add`} component={AddUIComponent} />
+        <Route path={`${match.url}/display`} component={DisplayUIComponent} />
     </div>
 
-MainMenuComponent.prototype = {
-    menuStatus: PropTypes.string,
-    changeStatus: PropTypes.func.isRequired
-}
-
-export default MainMenuComponent
+export default requireAuth(MainMenuComponent)

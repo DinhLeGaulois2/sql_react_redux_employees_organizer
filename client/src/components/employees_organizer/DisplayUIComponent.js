@@ -1,43 +1,30 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Route, NavLink } from "react-router-dom";
+import requireAuth from '../requireAuth'
+import '../HeaderStyle.css';
 
-import cst from '../../constants/employees_organizer/cst'
+import DisplayDptComponent from './DisplayDptComponent'
+import DisplayEmpComponent from './DisplayEmpComponent'
 
-import '../../style.scss'
-
-import DisplayDptContainer from '../../containers/employees_organizer/DisplayDptContainer'
-import DisplayEmpContainer from '../../containers/employees_organizer/DisplayEmpContainer'
-
-
-const DisplayUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
-    <div style={{ 'backgroundColor': 'gray' }}>
-        <table align="center" style={{ 'backgroundColor': 'black', 'width': '100%' }}><tbody><tr><td align="center" style={{ 'padding': '10px' }}>
-            <button type="button" className="btn" onClick={e => {
-                e.preventDefault()
-                onClickChangeStatus("", cst.DISPLAY_DPT)
-            }}>Show Departments</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" className="btn" onClick={e => {
-                e.preventDefault()
-                onClickChangeStatus("", cst.DISPLAY_EMP)
-            }}>Show Employees</button>
-            <br />
-        </td></tr></tbody></table>
-        {menuStatus == cst.MENU_DISPLAY &&
+class DisplayUIComponent extends React.Component {
+    render() {
+        const { match } = this.props
+        return (
             <div>
-                {status === cst.DISPLAY_DPT_SUCCESS &&
-                    <DisplayDptContainer />
-                }
-                {status === cst.DISPLAY_EMP_SUCCESS &&
-                    <DisplayEmpContainer />
-                }
+                <div style={{ "backgroundColor": "black" }}>
+                    <br />
+                    <p align="center">
+                        <NavLink to={`${match.url}/departments`} className="navLink" activeStyle={{ color: 'blue', fontSize: 'bold' }}>Show Courses</NavLink>
+                        <NavLink to={`${match.url}/employees`} className="navLink" activeStyle={{ color: 'blue', fontSize: 'bold' }}>Show Instructors</NavLink>
+                    </p>
+                    <br />
+                </div>
+    
+                <Route path={`${match.url}/departments`} exact component={DisplayDptComponent} />
+                <Route path={`${match.url}/employees`} exact component={DisplayEmpComponent} />
             </div>
-        }
-    </div>
-)
-DisplayUIComponent.prototype = {
-    status: PropTypes.string,
-    menuStatus: PropTypes.string,
-    onClickChangeStatus: PropTypes.func.isRequired,
+        )
+    }
 }
 
-export default DisplayUIComponent
+export default requireAuth(DisplayUIComponent)

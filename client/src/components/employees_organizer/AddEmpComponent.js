@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { reduxForm, Field, reset, formValueSelector } from 'redux-form'
+import { reduxForm, Field, reset } from 'redux-form'
 import PropTypes from 'prop-types'
-import { renderInputField, renderTextareaField } from '../../common/reduxForm/renderField'
+import { renderInputField } from '../../common/reduxForm/renderField'
 
 import '../../style.scss'
 

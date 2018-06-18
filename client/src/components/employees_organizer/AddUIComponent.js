@@ -1,42 +1,29 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import requireAuth from '../requireAuth'
+import { Route, NavLink } from "react-router-dom";
+import '../HeaderStyle.css';
 
-import '../../style.scss'
-import cst from '../../constants/employees_organizer/cst'
+import AddDptComponent from './AddDptComponent'
+import AddEmpComponent from './AddEmpComponent'
 
-import AddDptContainer from '../../containers/employees_organizer/AddDptContainer'
-import AddEmpContainer from '../../containers/employees_organizer/AddEmpContainer'
-
-const AddUIComponent = ({ status, menuStatus, onClickChangeStatus }) => (
-    <div style={{ 'backgroundColor': 'gray' }}>
-        <table align="center" style={{ 'backgroundColor': 'black', 'width': '100%' }}><tbody><tr><td align="center" style={{ 'padding': '10px' }}>
-            <button type="button" className="btn" onClick={e => {
-                e.preventDefault()
-                onClickChangeStatus("", cst.ADD_DPT)
-            }}>Add Department</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" className="btn" onClick={e => {
-                e.preventDefault()
-                onClickChangeStatus("", cst.ADD_EMP)
-            }}>Add Employee</button>
-            <br />
-        </td></tr></tbody></table>
-        {menuStatus == cst.MENU_ADD &&
+class AddUIComponent extends React.Component {
+    render() {
+        const { match } = this.props
+        return (
             <div>
-                {status === cst.ADD_DPT &&
-                    <AddDptContainer />
-                }
-                {status === cst.ADD_EMP &&
-                    <AddEmpContainer />
-                }
+                <div style={{ "backgroundColor": "black" }}>
+                    <br />
+                    <p align="center">
+                        <NavLink to={`${match.url}/department`} className="navLink" activeStyle={{ color: 'blue' }}>Add Department</NavLink>
+                        <NavLink to={`${match.url}/employee`} className="navLink" activeStyle={{ color: 'blue' }}>Add Employee</NavLink>
+                    </p>
+                    <br />
+                </div>
+                <Route path={`${match.url}/department`} exact component={AddDptComponent} />
+                <Route path={`${match.url}/employee`} exact component={AddEmpComponent} />
             </div>
-        }
-    </div>
-)
-
-AddUIComponent.prototype = {
-    status: PropTypes.string,
-    menuStatus: PropTypes.string,
-    onClickChangeStatus: PropTypes.func.isRequired
+        )
+    }
 }
 
-export default AddUIComponent
+export default requireAuth(AddUIComponent)
