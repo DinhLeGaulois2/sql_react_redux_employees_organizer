@@ -19,7 +19,7 @@ const validate = values => {
 
 class AddDptComponent extends React.Component {
     render() {
-        const { handleSubmit, invalid, submitting, reset, onClickAddDpt } = this.props
+        const { handleSubmit, invalid, submitting, reset, addDepartment } = this.props
         return (
             <div>
                 <div className="container" style={{ 'backgroundColor': 'white' }}>
@@ -36,7 +36,7 @@ class AddDptComponent extends React.Component {
                     }}>Add Department</div>
                 </div>
                 <br />
-                <form onSubmit={handleSubmit(onClickAddDpt)}>
+                <form onSubmit={handleSubmit(addDepartment)}>
                     <div>
                         <Field name="dptName" component={renderInputField} placeholder="Department's Name" /><br />
                     </div>

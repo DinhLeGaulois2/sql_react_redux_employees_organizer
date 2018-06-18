@@ -7,24 +7,16 @@ const initialStates = {
 
 const employees_organizer_reducer = (state = initialStates, action) => {
     switch (action.type) {
-        case cst.DISPLAY_EMP_BY_ID: {
-            return Object.assign({}, state, {
-                data: action.payload
-            })
-        }
         case cst.DISPLAY_EMP_BY_ID_SUCCESS: {
             return Object.assign({}, state, {
-                data: action.payload
-            })
-        }
-        case cst.DISPLAY_EMP: {
-            return Object.assign({}, state, {
-                data: action.payload
+                data: action.payload,
+                isList: false
             })
         }
         case cst.DISPLAY_EMP_SUCCESS: {
             return Object.assign({}, state, {
-                data: action.payload
+                data: action.payload,
+                isList: true
             })
         }
         default:

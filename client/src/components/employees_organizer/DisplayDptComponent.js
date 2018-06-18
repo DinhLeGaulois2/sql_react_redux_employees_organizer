@@ -1,46 +1,37 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import '../../style.scss'
+import { connect } from 'react-redux'
+import requireAuth from '../../components/requireAuth';
 
-import Modal from '../../common/modal/modal'
+import actions from "../../actions/employees_organizer/employees_organizer_actions"
 
-import cst from '../../constants/employees_organizer/cst'
-
-const DisplayDptComponent = ({ dpts, onClickDelete }) => (
-    <div>
-        <table align="center" style={{ 'width': '80%' }}><tbody>
-            {dpts.map((dpt, index) =>
-                <tr key={index}><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px', 'borderRadius': '20px' }}>
-                    <div className="relative">
-                        <h3 align="center" className="centeredChapterTitle"><b>Department</b>: {dpt.name}</h3>
-                        <button type="button" className="btnDelete" onClick={e => {
-                            e.preventDefault()
-                            onClickDelete(dpt.id)
-                        }}>x</button>
-                        <p><b>Number of Managers</b>: {dpt.dept_managers[0].employeeId}</p>
-                        <p><b>Number of Employees</b>: {dpt.dept_emps[0].employeeId}</p>
-                    </div>
-                </td></tr>
-            )}
-        </tbody></table>
-    </div>
-)
-
-DisplayDptComponent.propTypes = {
-    dpts: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        depart_managers: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.number,
-            employeeId: PropTypes.number
-        })),
-        dept_emps: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.number,
-            employeeId: PropTypes.number
-        }))
-    })),
-    onClickDelete: PropTypes.func.isRequired
+class DisplayDptComponent extends React.Component {
+    render() {
+        const { dpts, deleteDpt } = this.props
+        return (
+            <div>
+                <table align="center" style={{ 'width': '80%' }}><tbody>
+                    {dpts.map((dpt, index) =>
+                        <tr key={index}><td style={{ 'backgroundColor': 'white', 'color': 'black', 'padding': '20px', 'borderRadius': '20px' }}>
+                            <div className="relative">
+                                <h3 align="center" className="centeredChapterTitle"><b>Department</b>: {dpt.name}</h3>
+                                <button type="button" className="btnDelete" onClick={e => {
+                                    e.preventDefault()
+                                    deleteDpt(dpt.id)
+                                }}>x</button>
+                                <p><b>Number of Managers</b>: {dpt.dept_managers[0].employeeId}</p>
+                                <p><b>Number of Employees</b>: {dpt.dept_emps[0].employeeId}</p>
+                            </div>
+                        </td></tr>
+                    )}
+                </tbody></table>
+            </div>
+        )
+    }
 }
 
-export default DisplayDptComponent
+const MapStateToProps = (state) => ({
+    dpts: state.deparments.data
+})
+
+export default connect(MapStateToProps, actions)(requireAuth(DisplayDptComponent))

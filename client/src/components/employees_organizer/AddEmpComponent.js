@@ -64,7 +64,7 @@ const validate = values => {
 
 class AddEmpComponent extends React.Component {
     render() {
-        const { handleSubmit, invalid, submitting, reset, dpts, onClickAddEmployee } = this.props
+        const { handleSubmit, invalid, submitting, reset, dpts, addEmployee } = this.props
         return (
             <div>
                 <div className="container" style={{ 'backgroundColor': 'white' }}>
@@ -84,7 +84,7 @@ class AddEmpComponent extends React.Component {
                 <p align="center">[Field with <font color="red">*</font> is required]</p>
 
                 <div className="container">
-                    <form onSubmit={handleSubmit(onClickAddEmployee)}>
+                    <form onSubmit={handleSubmit(addEmployee)}>
                         <div>
                             <Field name="first_name" component={renderInputField} placeholder="First Name" /><br />
                             <Field name="last_name" component={renderInputField} placeholder="Last Name" /><br />
@@ -142,7 +142,7 @@ class AddEmpComponent extends React.Component {
 }
 
 const MapStateToProps = (state) => ({
-    dpts: {}
+    dpts: state.deparments.data
 })
 
 // Reset the form after submission
