@@ -5,7 +5,11 @@ import cst from '../../constants/employees_organizer/cst'
 const employees_organizer_actions = {
     addDepartment: (data) => {
         return dispatch => {
-            axios.post("/api/add/department", data)
+            axios.post("http://localhost:3090/api/add/department", data, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
                     dispatch({
                         type: cst.ADD_DPT_SUCCESS,
@@ -41,7 +45,11 @@ const employees_organizer_actions = {
                     to_date: new Date(data.salary_to_date)
                 }
             }
-            axios.post("/api/add/employee", obj)
+            axios.post("http://localhost:3090/api/add/employee", obj, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
                     dispatch({
                         type: cst.ADD_EMP_SUCCESS,
@@ -53,7 +61,11 @@ const employees_organizer_actions = {
 
     displayDptById: (dId) => {
         return dispatch => {
-            axios.get("/api/get/department/" + dId)
+            axios.get("http://localhost:3090/api/get/department/" + dId, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
                     dispatch({
                         type: cst.DISPLAY_DPT_BY_ID_SUCCESS,
@@ -66,7 +78,11 @@ const employees_organizer_actions = {
 
     displayEmpById: (eId) => {
         return dispatch => {
-            axios.get("/api/get/employee/", eId)
+            axios.get("http://localhost:3090/api/get/employee/", eId, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
                     dispatch({
                         type: cst.DISPLAY_EMP_BY_ID_SUCCESS,
@@ -79,9 +95,17 @@ const employees_organizer_actions = {
 
     deleteEmp: (eId) => {
         return dispatch => {
-            axios.delete("/api/delete/employee/" + eId)
+            axios.delete("http://localhost:3090/api/delete/employee/" + eId, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
-                    axios.get("/api/get/employees")
+                    axios.get("http://localhost:3090/api/get/employees", {
+                        headers: {
+                            'authorization': localStorage.getItem('token')
+                        }
+                    })
                         .then(response => {
                             dispatch({
                                 type: cst.DISPLAY_EMP_SUCCESS,
@@ -96,11 +120,19 @@ const employees_organizer_actions = {
 
     deleteDpt: (dId) => {
         return dispatch => {
-            axios.delete("/api/delete/department/" + dId)
+            axios.delete("http://localhost:3090/api/delete/department/" + dId, {
+                headers: {
+                    'authorization': localStorage.getItem('token')
+                }
+            })
                 .then(response => {
                     if (response.data.isError) alert(response.data.msg)
                     else {
-                        axios.get("/api/get/departments") // reload departments
+                        axios.get("http://localhost:3090/api/get/departments", {
+                            headers: {
+                                'authorization': localStorage.getItem('token')
+                            }
+                        }) // reload departments
                             .then(response => {
                                 dispatch({
                                     type: cst.DISPLAY_DPT_SUCCESS,
@@ -116,7 +148,7 @@ const employees_organizer_actions = {
 
     // linkEmp2Dpt: (data) => {
     //     return dispatch => {
-    //         axios.get("/api/", data)
+    //         axios.get("http://localhost:3090/api/", data)
     //             .then(response => {
     //                 dispatch({
     //                     type: cst.LINK_EMP_2_DPT_SUCCESS,
@@ -129,7 +161,7 @@ const employees_organizer_actions = {
 
     // linkManager2Dpt: (data) => {
     //     return dispatch => {
-    //         axios.get("/api/", data)
+    //         axios.get("http://localhost:3090/api/", data)
     //             .then(response => {
     //                 dispatch({
     //                     type: cst.LINK_MANAGER_2_DPT_SUCCESS,
@@ -144,7 +176,11 @@ const employees_organizer_actions = {
             if (mainStatus.length > 0) dispatch({ type: mainStatus })
             if (actionStatus.length > 0) {
                 if (actionStatus == cst.DISPLAY_DPT) {
-                    axios.get("/api/get/departments")
+                    axios.get("http://localhost:3090/api/get/departments", {
+                        headers: {
+                            'authorization': localStorage.getItem('token')
+                        }
+                    })
                         .then(response => {
                             dispatch({
                                 type: cst.DISPLAY_DPT_SUCCESS,
@@ -154,7 +190,11 @@ const employees_organizer_actions = {
                         .catch(err => { alert(err) })
                 }
                 else if (actionStatus == cst.DISPLAY_EMP) {
-                    axios.get("/api/get/employees")
+                    axios.get("http://localhost:3090/api/get/employees", {
+                        headers: {
+                            'authorization': localStorage.getItem('token')
+                        }
+                    })
                         .then(response => {
                             dispatch({
                                 type: cst.DISPLAY_EMP_SUCCESS,
@@ -164,7 +204,11 @@ const employees_organizer_actions = {
                         .catch(err => { alert(err) })
                 }
                 else if (actionStatus == cst.ADD_EMP) {
-                    axios.get("/api/get/departments")
+                    axios.get("http://localhost:3090/api/get/departments", {
+                        headers: {
+                            'authorization': localStorage.getItem('token')
+                        }
+                    })
                         .then(response => {
                             dispatch({
                                 type: cst.DISPLAY_DPT_SUCCESS,
