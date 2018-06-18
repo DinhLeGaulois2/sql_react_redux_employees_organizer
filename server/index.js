@@ -7,7 +7,7 @@ const cors = require('cors');
 // DB Setup
 // Requiring our models for syncing
 var db = require("./models");
-var initValues = require("./server/data/initialData.js");
+var initValues = require("./data/initialData.js");
 
 // App Setup
 app.use(cors());

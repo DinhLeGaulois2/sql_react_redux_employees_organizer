@@ -3,7 +3,7 @@ import { reduxForm, Field, reset } from 'redux-form'
 import { renderInputField } from '../../common/reduxForm/renderField'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import actions from '../../actions/courses_organizer/courseAction'
+import actions from '../../actions/employees_organizer/employees_organizer_actions'
 import requireAuth from '../../components/requireAuth';
 
 import '../../style.scss'

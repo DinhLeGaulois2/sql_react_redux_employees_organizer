@@ -8,31 +8,31 @@ import { reduxForm, Field } from 'redux-form'
 class Signup extends Component {
   onSubmit = formProps => {
     this.props.signup(formProps, () => {
-      this.props.history.push('/feature');
+      this.props.history.push('/mainMenu');
     });
   };
+
+  emailValidation = value =>
+    value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+      ? 'Invalid email address'
+      : undefined
+  passwordValidation = value =>
+    value && !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(value)
+      ? 'Invalid password'
+      : undefined
 
   render() {
     const { handleSubmit, submitting } = this.props;
 
-    const emailValidation = value =>
-      value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-        ? 'Invalid email address'
-        : undefined;
-    const passwordValidation = value =>
-      value && !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})$/i.test(value)
-        ? 'Invalid email address'
-        : undefined
-
     return (
       <div className="container">
-        <h1 align="center" style={{backgroundColor: 'black', width: '100%', padding: '10px', borderRadius: "10px"}}><font color="cyan">Sign Up</font></h1>
+        <h1 align="center" style={{ backgroundColor: 'black', width: '100%', padding: '10px', borderRadius: "10px" }}><font color="cyan">Sign Up</font></h1>
         <form onSubmit={handleSubmit(this.onSubmit)}>
           <Field
             name="email"
             component={renderInputField}
             placeholder="Email"
-            validate={emailValidation}
+            validate={this.emailValidation}
           />
           (Email must be unique: i.e. never been registered before)
           <Field
@@ -40,7 +40,7 @@ class Signup extends Component {
             type="password"
             component={renderInputField}
             placeholder="Password"
-            validate={passwordValidation}
+            validate={this.passwordValidation}
           />
           (At least 8 characters with - at least - 1 uppercase, 1 lowercase and 1 numeric character)
           <div>{this.props.errorMessage}</div><br />

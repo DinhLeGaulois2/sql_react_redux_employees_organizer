@@ -1,6 +1,6 @@
 'use strict';
 
-var conf = require('../../MY_PRIVATE_FOLDER/config_params')
+var conf = require('../../server/config')
 
 // the Object from the library ...
 var Sequelize = require('sequelize');
@@ -32,6 +32,7 @@ db.dept_manager = require('../models/dept_manager.js')(sequelize, Sequelize)
 db.employee = require('../models/employee.js')(sequelize, Sequelize)
 db.salary = require('../models/salary.js')(sequelize, Sequelize)
 db.title = require('../models/title.js')(sequelize, Sequelize)
+db.user = require('../models/user.js')(sequelize, Sequelize);
 
 // n-m 
 db.employee.hasMany(db.dept_manager)

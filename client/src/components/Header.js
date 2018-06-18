@@ -8,7 +8,7 @@ class Header extends Component {
     if (this.props.authenticated) {
       return (
         <div>
-          <NavLink to="/mainMenu" className="navLink" strict activeStyle={{ color: 'blue' }}>Booking</NavLink>
+          <NavLink to="/mainMenu" className="navLink" strict activeStyle={{ color: 'blue' }}>Go!</NavLink>
           <NavLink to="/signout" className="navLink" strict activeStyle={{ color: 'blue' }}>Sign Out</NavLink>
         </div>
       );

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Field } from 'redux-form'
 
 export const renderInputField = ({ input, placeholder, type, meta: { touched, error } }) => (
     <div>
@@ -7,6 +6,7 @@ export const renderInputField = ({ input, placeholder, type, meta: { touched, er
         <div>
             <input
                 {...input}
+                type={type || ""}
                 placeholder={placeholder || ""}
                 className="form-control"
             />
@@ -21,6 +21,7 @@ export const renderTextareaField = ({ textarea, input, placeholder, type, rows, 
             <textarea
                 // VERY IMPORTANT TO PUT "INPUT" LIKE BELOW ...
                 {...input}
+                type={type || ""}
                 placeholder={placeholder || ""}
                 className="form-control"
                 rows={rows || "3"}

@@ -40,7 +40,7 @@ const employees_organizer_actions = {
                     to_date: new Date(data.dpt_to_date)
                 },
                 salary: {
-                    salary: parseInt(data.salary),
+                    salary: parseInt(data.salary, 10),
                     from_date: new Date(data.salary_from_date),
                     to_date: new Date(data.salary_to_date)
                 }
@@ -175,7 +175,7 @@ const employees_organizer_actions = {
         return dispatch => {
             if (mainStatus.length > 0) dispatch({ type: mainStatus })
             if (actionStatus.length > 0) {
-                if (actionStatus == cst.DISPLAY_DPT) {
+                if (actionStatus === cst.DISPLAY_DPT) {
                     axios.get("http://localhost:3090/api/get/departments", {
                         headers: {
                             'authorization': localStorage.getItem('token')
@@ -189,7 +189,7 @@ const employees_organizer_actions = {
                         })
                         .catch(err => { alert(err) })
                 }
-                else if (actionStatus == cst.DISPLAY_EMP) {
+                else if (actionStatus === cst.DISPLAY_EMP) {
                     axios.get("http://localhost:3090/api/get/employees", {
                         headers: {
                             'authorization': localStorage.getItem('token')
@@ -203,7 +203,7 @@ const employees_organizer_actions = {
                         })
                         .catch(err => { alert(err) })
                 }
-                else if (actionStatus == cst.ADD_EMP) {
+                else if (actionStatus === cst.ADD_EMP) {
                     axios.get("http://localhost:3090/api/get/departments", {
                         headers: {
                             'authorization': localStorage.getItem('token')
